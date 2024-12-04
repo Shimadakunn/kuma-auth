@@ -1,6 +1,5 @@
 import { smartWallet } from "@/lib/smart-wallet";
 import { UserOpBuilder } from "@/lib/smart-wallet/service/userOps";
-import { toast } from "sonner";
 import {
   Address,
   EstimateFeesPerGasReturnType,
@@ -17,7 +16,7 @@ import {
   ERC20_ABI,
   TokenType,
   chains,
-} from "@/constants";
+} from "@/config";
 
 const builder = new UserOpBuilder();
 
@@ -29,13 +28,13 @@ export async function Withdraw(
   me: Me,
   amount: string,
   setIsLoading: (loading: boolean) => void,
-  refreshBalance: Function,
+  refreshBalance: () => void,
   setError: (error: any) => void
 ) {
   setIsLoading(true);
   try {
-    smartWallet.init(chains[token.network]);
-    builder.init(chains[token.network]);
+    smartWallet.init(chains.arbitrum);
+    builder.init(chains.arbitrum);
 
     const { maxFeePerGas, maxPriorityFeePerGas }: EstimateFeesPerGasReturnType =
       await smartWallet.client.estimateFeesPerGas();
@@ -58,13 +57,10 @@ export async function Withdraw(
 
     const hash = await smartWallet.sendUserOperation({ userOp });
     if (hash === null) {
-      toast.error("Transaction failed");
       throw new Error("Transaction failed");
     }
-    toast.success("Transaction sent to blockchain");
     console.log("hash", hash);
     const receipt = await smartWallet.waitForUserOperationReceipt({ hash });
-    toast.success("Transaction executed successfully");
     console.log("receipt", receipt);
     refreshBalance();
     setIsLoading(false);
@@ -84,7 +80,7 @@ function WithdrawEthAave(
   amount: string
 ) {
   const approve = {
-    dest: token.aave as Hex,
+    dest: token.address as Hex,
     value: parseEther("0"),
     data: encodeFunctionData({
       abi: ERC20_ABI,
@@ -117,7 +113,7 @@ function WithdrawErc20Aave(
     data: encodeFunctionData({
       abi: ERC20_ABI,
       functionName: "approve",
-      args: [contract.ipoolAddress as Hex, parseUnits(amount, token.decimals!)],
+      args: [contract.ipoolAddress as Hex, parseUnits(amount, 6)],
     }),
   };
   const supply = {
@@ -126,11 +122,7 @@ function WithdrawErc20Aave(
     data: encodeFunctionData({
       abi: AAVE_IPOOL_ABI,
       functionName: "withdraw",
-      args: [
-        token.address as Hex,
-        parseUnits(amount, token.decimals!),
-        me!.account,
-      ],
+      args: [token.address as Hex, parseUnits(amount, 6), me!.account],
     }),
   };
 

@@ -18,7 +18,9 @@ export function useSmartWalletHook() {
 
     smartWallet.client.watchEvent({
       address,
-      onLogs: (logs: any) => {},
+      onLogs: (logs: any) => {
+        console.log("logs", logs);
+      },
     });
   }, [address]);
 

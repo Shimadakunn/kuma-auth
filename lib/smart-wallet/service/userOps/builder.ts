@@ -163,7 +163,7 @@ export class UserOpBuilder {
     const chain = Object.entries(chains).find(
       ([_, chainType]) => chainType.viem === this.chain
     );
-    const [chainKey, chainValue] = chain!;
+    const [_, chainValue] = chain!;
     userOp.paymasterAndData = chainValue.paymaster;
     if (parseFloat(tokens["gas-arbitrumSepolia"].balance!) === 0) {
       console.log("full sponsored fees");
@@ -171,7 +171,7 @@ export class UserOpBuilder {
     } else {
       const exchangeRate = parseUnits(
         Number(
-          parseFloat(tokens["eth-arbitrumSepolia"].rate!).toFixed(0)
+          parseFloat(tokens["gas-arbitrumSepolia"].rate!).toFixed(0)
         ).toString(),
         6
       );
@@ -181,7 +181,7 @@ export class UserOpBuilder {
         [
           tokens["gas-arbitrumSepolia"].address as Hex,
           exchangeRate,
-          chains[tokens["usdc-arbitrumSepolia"].network].eId,
+          chains.arbitrum.eId,
         ]
       );
 

@@ -1,6 +1,5 @@
 import { smartWallet } from "@/lib/smart-wallet";
 import { UserOpBuilder } from "@/lib/smart-wallet/service/userOps";
-import { toast } from "sonner";
 import {
   Address,
   EstimateFeesPerGasReturnType,
@@ -17,7 +16,7 @@ import {
   ERC20_ABI,
   TokenType,
   chains,
-} from "@/constants";
+} from "@/config";
 
 const builder = new UserOpBuilder();
 
@@ -29,13 +28,13 @@ export async function Supply(
   me: Me,
   amount: string,
   setIsLoading: (loading: boolean) => void,
-  refreshBalance: Function,
+  refreshBalance: () => void,
   setError: (error: any) => void
 ) {
   setIsLoading(true);
   try {
-    smartWallet.init(chains[token.network]);
-    builder.init(chains[token.network]);
+    smartWallet.init(chains.arbitrum);
+    builder.init(chains.arbitrum);
 
     const { maxFeePerGas, maxPriorityFeePerGas }: EstimateFeesPerGasReturnType =
       await smartWallet.client.estimateFeesPerGas();
@@ -56,18 +55,14 @@ export async function Supply(
     console.log("userOp", userOp);
     const hash = await smartWallet.sendUserOperation({ userOp });
     if (hash === null) {
-      toast.error("Transaction failed");
       throw new Error("Transaction failed");
     }
     console.log("user op sent", hash);
-    toast.success("Transaction sent to blockchain");
     const receipt = await smartWallet.waitForUserOperationReceipt({ hash });
-    toast.success("Transaction executed successfully");
     refreshBalance();
     setIsLoading(false);
     return receipt;
   } catch (e: any) {
-    toast.error("Transaction failed");
     console.error(e);
     setError(e);
     setIsLoading(false);
@@ -107,7 +102,7 @@ function SupplyErc20Aave(
     data: encodeFunctionData({
       abi: ERC20_ABI,
       functionName: "approve",
-      args: [contract.ipoolAddress as Hex, parseUnits(amount, token.decimals!)],
+      args: [contract.ipoolAddress as Hex, parseUnits(amount, 6)],
     }),
   };
   const supply = {
@@ -116,12 +111,7 @@ function SupplyErc20Aave(
     data: encodeFunctionData({
       abi: AAVE_IPOOL_ABI,
       functionName: "supply",
-      args: [
-        token.address as Hex,
-        parseUnits(amount, token.decimals!),
-        me!.account,
-        0,
-      ],
+      args: [token.address as Hex, parseUnits(amount, 6), me!.account, 0],
     }),
   };
 
