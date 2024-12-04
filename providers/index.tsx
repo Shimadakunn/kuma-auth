@@ -63,6 +63,7 @@ function useMeHook() {
       //   pubKey: user!.pubKey,
       // });
 
+      console.log("creation success", me);
       localStorage.setItem("passkeys4337.me", JSON.stringify(me));
       localStorage.setItem("passkeys4337.returning", "true");
       setIsReturning(true);
