@@ -4,8 +4,8 @@ import { useMe } from "@/providers";
 export default function Home() {
   const { create, me } = useMe();
 
-  const connect = () => {
-    create("leo");
+  const connect = async () => {
+    await create("leo");
     const appRedirectUrl = `kuma://home?address=${me?.account}`;
     window.location.href = appRedirectUrl;
   };

@@ -39,7 +39,7 @@ function useMeHook() {
       if (!credential) {
         return;
       }
-      console.log("saving user on smart contract...");
+      alert("saving user");
       const user = await saveUser({
         id: credential.rawId,
         pubKey: credential.pubKey,
@@ -69,6 +69,7 @@ function useMeHook() {
       setIsReturning(true);
       setMe(me);
     } catch (e) {
+      alert("error while creating user");
       console.error(e);
     } finally {
       setIsLoading(false);
