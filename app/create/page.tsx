@@ -2,12 +2,13 @@
 import { Button } from "@/components/ui/button";
 import { useMe } from "@/providers";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function Home() {
+// Create a separate component for the content that uses useSearchParams
+function CreateAccount() {
   const { create, me } = useMe();
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const username = searchParams.get("username") || "";
 
   const connect = async () => {
@@ -43,5 +44,14 @@ export default function Home() {
         </Button>
       </div>
     </div>
+  );
+}
+
+// Main component with Suspense boundary
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CreateAccount />
+    </Suspense>
   );
 }
