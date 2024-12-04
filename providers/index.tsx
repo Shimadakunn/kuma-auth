@@ -34,11 +34,9 @@ function useMeHook() {
 
     try {
       const credential = await WebAuthn.create({ username });
-      alert(credential);
       if (!credential) {
         return;
       }
-      alert("saving user");
       const user = await saveUser({
         id: credential.rawId,
         pubKey: credential.pubKey,
@@ -64,6 +62,7 @@ function useMeHook() {
       // });
 
       console.log("creation success", me);
+      alert("creation success");
       localStorage.setItem("passkeys4337.me", JSON.stringify(me));
       localStorage.setItem("passkeys4337.returning", "true");
       setIsReturning(true);
