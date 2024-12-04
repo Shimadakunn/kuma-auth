@@ -33,9 +33,8 @@ function useMeHook() {
     setIsLoading(true);
 
     try {
-      console.log("WebAuthn signature...");
       const credential = await WebAuthn.create({ username });
-      console.log("credential", credential);
+      alert(credential);
       if (!credential) {
         return;
       }
@@ -69,7 +68,7 @@ function useMeHook() {
       setIsReturning(true);
       setMe(me);
     } catch (e) {
-      alert("error while creating user");
+      alert(e);
       console.error(e);
     } finally {
       setIsLoading(false);
