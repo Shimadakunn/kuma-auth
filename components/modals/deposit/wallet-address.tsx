@@ -1,7 +1,7 @@
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
 export function WalletAddress() {
-  const walletAddress = '0x23...789';
+  const walletAddress = '0x23...009090789';
 
   const handleCopy = async () => {
     console.log('Copying to clipboard...');
@@ -22,7 +22,8 @@ export function WalletAddress() {
         </span>
         <button
           onClick={() => {
-            console.log('Copying to clipboard...');
+            navigator.clipboard.writeText(walletAddress);
+            toast.success('Copied to clipboard');
           }}
           className="transition-opacity hover:opacity-80">
           <Copy size={15} className="text-gray-500" />

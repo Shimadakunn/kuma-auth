@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { useMe } from '@/providers';
 import { useRouter, useSearchParams } from 'next/navigation';

@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import { SmartWalletProvider } from '@/lib/smart-wallet/SmartWalletProvider';
 import { MeProvider } from '@/providers';
 import { Lexend } from 'next/font/google';
-import { Toaster } from 'sonner';
+// import { Toaster } from 'sonner';
 import './globals.css';
+import { Toaster } from '@/components/ui/toaster';
 
 const lexend = Lexend({ subsets: ['latin'] });
 
@@ -24,7 +25,7 @@ export default function RootLayout({
         <MeProvider>
           <SmartWalletProvider>
             {children}
-            <Toaster position="top-center" />
+            <Toaster />
           </SmartWalletProvider>
         </MeProvider>
       </body>

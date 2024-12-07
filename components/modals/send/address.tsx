@@ -18,7 +18,7 @@ export function AddressInput({
       if (text.startsWith('0x')) {
         onChangeText(text);
       } else {
-        console.log(text);
+        console.log('invalid');
         toast.error('Invalid address');
       }
     } catch (error) {

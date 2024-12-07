@@ -1,10 +1,9 @@
-import type { ErrorType } from 'viem/errors/utils.js';
-import type { MaybePromise } from 'viem/types/utils.js';
+// import type { MaybePromise } from "viem/types/utils";
+type MaybePromise<T> = T | Promise<T>;
 
+// biome-ignore lint/suspicious/noExplicitAny: it's a recursive function, so it's hard to type
 type Callback = ((...args: any[]) => any) | undefined;
 type Callbacks = Record<string, Callback>;
-
-export type ObserveErrorType = ErrorType;
 
 export const listenersCache = /*#__PURE__*/ new Map<string, { id: number; fns: Callbacks }[]>();
 export const cleanupCache = /*#__PURE__*/ new Map<string, () => void>();
@@ -33,6 +32,7 @@ export function observe<TCallbacks extends Callbacks>(
     const listeners = getListeners();
     listenersCache.set(
       observerId,
+      // biome-ignore lint/suspicious/noExplicitAny: it's a recursive function, so it's hard to type
       listeners.filter((cb: any) => cb.id !== callbackId)
     );
   };
@@ -53,7 +53,7 @@ export function observe<TCallbacks extends Callbacks>(
     emit[key] = ((...args: Parameters<NonNullable<TCallbacks[keyof TCallbacks]>>) => {
       const listeners = getListeners();
       if (listeners.length === 0) return;
-      for (const listener of listeners) listener.fns[key]?.(...args);
+      listeners.forEach((listener) => listener.fns[key]?.(...args));
     }) as TCallbacks[Extract<keyof TCallbacks, string>];
   }
 
