@@ -10,7 +10,7 @@ import { privateKeyToAccount } from "viem/accounts";
 
 import { User } from "./getUser";
 
-import { FACTORY_ABI, FACTORY_ADDRESS, chains } from "@/config";
+import { FACTORY_ABI, FACTORY_ADDRESS, chains } from "@/constants";
 
 export async function saveUser({
   id,

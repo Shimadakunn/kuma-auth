@@ -7,7 +7,7 @@ import {
   parseUnits,
 } from "viem";
 
-import { ERC20_ABI, TokenType, chains } from "@/config";
+import { ERC20_ABI, TokenType, chains } from "@/constants";
 import { smartWallet } from "@/lib/smart-wallet";
 import { UserOpBuilder, emptyHex } from "@/lib/smart-wallet/service/userOps";
 

@@ -16,7 +16,7 @@ import {
   ERC20_ABI,
   TokenType,
   chains,
-} from "@/config";
+} from "@/constants";
 
 const builder = new UserOpBuilder();
 

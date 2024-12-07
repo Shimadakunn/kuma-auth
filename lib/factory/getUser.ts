@@ -1,6 +1,6 @@
 import { Address, Hex, createPublicClient, http, toHex } from "viem";
 
-import { FACTORY_ABI, FACTORY_ADDRESS, chains } from "@/config";
+import { FACTORY_ABI, FACTORY_ADDRESS, chains } from "@/constants";
 
 export type User = { id: Hex; pubKey: { x: Hex; y: Hex }; account: Address };
 

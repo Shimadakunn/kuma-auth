@@ -3,7 +3,7 @@ import axios from "axios";
 import { SmartWalletClient } from "../smart-wallet";
 import { UserOperationAsHex } from "../userOps";
 
-import { ENTRYPOINT_ADDRESS } from "@/config";
+import { ENTRYPOINT_ADDRESS } from "@/constants";
 
 /*  */
 export type EstimateUserOperationGasReturnType = {

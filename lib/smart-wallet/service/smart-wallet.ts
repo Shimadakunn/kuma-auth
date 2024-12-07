@@ -12,7 +12,7 @@ import {
 
 import { SmartWalletActions, smartWalletActions } from "./decorators";
 
-import { chains, ChainType } from "@/config";
+import { chains, ChainType } from "@/constants";
 import { EstimateUserOperationGasReturnType } from "@/lib/smart-wallet/service/actions";
 import {
   ERC4337RpcSchema,

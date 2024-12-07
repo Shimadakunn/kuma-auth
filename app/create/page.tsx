@@ -1,15 +1,14 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { useMe } from "@/providers";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Button } from '@/components/ui/button';
+import { useMe } from '@/providers';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 // Create a separate component for the content that uses useSearchParams
 function CreateAccount() {
   const { create, me } = useMe();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const username = searchParams.get("username") || "";
+  const username = searchParams.get('username') || '';
 
   const connect = async () => {
     await create(username);
@@ -17,17 +16,17 @@ function CreateAccount() {
       const appRedirectUrl = `kuma://home?address=${me.account}`;
       window.location.href = appRedirectUrl;
     } else {
-      alert("Something went wrong");
+      alert('Something went wrong');
     }
   };
 
   return (
-    <div className="h-[100vh] w-full flex flex-col items-center justify-between border relative">
-      <div className=" w-full h-16 flex items-center justify-start px-4">
+    <div className="relative flex h-[100vh] w-full flex-col items-center justify-between border">
+      <div className=" flex h-16 w-full items-center justify-start px-4">
         <h1 className="text-2xl font-black">Morpho Labs</h1>
       </div>
       <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="font-black text-4xl">Create Account</h1>
+        <h1 className="text-4xl font-black">Create Account</h1>
         {username && (
           <p className="text-sm text-muted-foreground">
             Sign with Passkey to create account:
@@ -35,11 +34,10 @@ function CreateAccount() {
           </p>
         )}
       </div>
-      <div className="w-full h-16 flex items-center justify-center mb-8">
+      <div className="mb-8 flex h-16 w-full items-center justify-center">
         <Button
           onClick={connect}
-          className="h-14 w-[42vw] rounded-lg text-white text-2xl font-black border-2 border-black p-0"
-        >
+          className="h-14 w-[42vw] rounded-lg border-2 border-black p-0 text-2xl font-black text-white">
           Create
         </Button>
       </div>

@@ -3,7 +3,7 @@ import { Hash } from "viem";
 
 import { smartWallet } from "../service/smart-wallet";
 
-import { chains } from "@/config";
+import { chains } from "@/constants";
 
 export function useSmartWalletHook() {
   const [address, setAddress] = useState<Hash | null>(null);

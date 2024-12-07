@@ -28,7 +28,7 @@ import {
   FACTORY_ADDRESS,
   chains,
   tokens,
-} from "@/config";
+} from "@/constants";
 import { smartWallet } from "@/lib/smart-wallet";
 import { DEFAULT_USER_OP } from "@/lib/smart-wallet/service/userOps/constants";
 import {
