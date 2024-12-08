@@ -1,4 +1,6 @@
-import { Area, AreaChart, XAxis } from 'recharts';
+'use client';
+
+import { Area, AreaChart } from 'recharts';
 
 import {
   ChartConfig,
@@ -6,72 +8,101 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart';
+import { cn } from '@/lib/utils';
+import { useState } from 'react';
 const chartData = [
-  { month: 'January', desktop: 186, mobile: 80 },
-  { month: 'February', desktop: 305, mobile: 200 },
-  { month: 'March', desktop: 237, mobile: 120 },
-  { month: 'April', desktop: 73, mobile: 190 },
-  { month: 'May', desktop: 209, mobile: 130 },
-  { month: 'June', desktop: 214, mobile: 140 },
+  { month: 'January', balance: 10.5 },
+  { month: 'February', balance: 11.2 },
+  { month: 'March', balance: 12.1 },
+  { month: 'April', balance: 13.4 },
+  { month: 'May', balance: 14.3 },
+  { month: 'June', balance: 15.2 },
 ];
 
 const chartConfig = {
-  desktop: {
-    label: 'Desktop',
-    color: 'hsl(var(--chart-1))',
-  },
-  mobile: {
-    label: 'Mobile',
-    color: 'hsl(var(--chart-4))',
+  balance: {
+    label: 'Balance',
+    color: '#556CDE',
   },
 } satisfies ChartConfig;
 
 export function Chart() {
+  const [period, setPeriod] = useState('1H');
   return (
-    <div className="flex h-[30vh] items-center justify-center">
-      {/* <ChartContainer config={chartConfig}>
+    <div className="flex h-[35vh] flex-col items-center justify-center ">
+      <ChartContainer config={chartConfig} className="h-full w-full">
         <AreaChart
           accessibilityLayer
           data={chartData}
           margin={{
-            right: 12,
-          }}
-        >
+            top: 4,
+          }}>
           <defs>
             <linearGradient id="fillArea" x1="0" y1="0" x2="0" y2="1">
-              <stop
-                offset="5%"
-                stopColor="var(--color-price)"
-                stopOpacity={0.8}
-              />
-              <stop
-                offset="95%"
-                stopColor="var(--color-price)"
-                stopOpacity={0.05}
-              />
+              <stop offset="5%" stopColor="#556CDE" stopOpacity={0.8} />
+              <stop offset="100%" stopColor="#556CDE" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <XAxis
+          {/* <XAxis
             dataKey="month"
             tickLine={false}
             axisLine={false}
             tickMargin={8}
             tickFormatter={(value) => value.slice(0, 3)}
-          />
-          <ChartTooltip
-            cursor={false}
-            content={<ChartTooltipContent indicator="dot" />}
-          />
+          /> */}
+          <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="dot" />} />
           <Area
-            dataKey="mobile"
+            dataKey="balance"
             type="natural"
             fill="url(#fillArea)"
-            fillOpacity={0.7}
-            stroke="var(--color-mobile)"
+            fillOpacity={1}
+            stroke="#556CDE"
             stackId="a"
           />
         </AreaChart>
-      </ChartContainer> */}
+      </ChartContainer>
+      <div className="flex h-[5vh] w-full items-center justify-center gap-8">
+        <button
+          className={cn(
+            'rounded-full  p-2 text-sm font-bold text-gray-400',
+            period === '1H' && 'bg-gray-200 text-gray-800'
+          )}
+          onClick={() => {
+            setPeriod('1H');
+          }}>
+          1H
+        </button>
+        <button
+          className={cn(
+            'rounded-full  p-2 text-sm font-bold text-gray-400',
+            period === '1D' && 'bg-gray-200 text-gray-800'
+          )}
+          onClick={() => {
+            setPeriod('1D');
+          }}>
+          1D
+        </button>
+        <button
+          className={cn(
+            'rounded-full  p-2 text-sm font-bold text-gray-400',
+            period === '1W' && 'bg-gray-200 text-gray-800'
+          )}
+          onClick={() => {
+            setPeriod('1W');
+          }}>
+          1W
+        </button>
+        <button
+          className={cn(
+            'rounded-full p-2 text-sm font-bold text-gray-400',
+            period === '1M' && 'bg-gray-200 text-gray-800'
+          )}
+          onClick={() => {
+            setPeriod('1M');
+          }}>
+          1M
+        </button>
+      </div>
     </div>
   );
 }

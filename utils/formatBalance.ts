@@ -2,9 +2,15 @@ export function formatNumberForDisplay(numberString: string) {
   if (numberString === undefined) return undefined;
   const decimalIndex = numberString.indexOf('.');
   if (decimalIndex !== -1) {
-    let [integerPart, decimalPart] = numberString.split('.');
-    decimalPart = decimalPart.substring(0, 4);
-    if (decimalPart === '0000') return integerPart;
+    const [integerPart, initialDecimalPart] = numberString.split('.');
+    let decimalPart = initialDecimalPart.substring(0, 4);
+
+    // Check if all decimal digits are 0
+    if (!decimalPart || decimalPart.split('').every((d) => d === '0')) {
+      return integerPart;
+    }
+
+    // Trim trailing zeros
     for (let i = decimalPart.length - 1; i >= 0; i--) {
       if (decimalPart[i] !== '0') {
         decimalPart = decimalPart.substring(0, i + 1);
@@ -32,10 +38,14 @@ export function formatBalance(value: string | number | undefined, decimals?: num
   integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   if (decimalPart) {
-    decimalPart = decimalPart.substring(0, decimals || 4);
+    decimalPart = decimalPart.substring(0, decimals || 2);
 
-    if (decimalPart === '0000') return integerPart;
+    // Check if all decimal digits are 0
+    if (!decimalPart || decimalPart.split('').every((d) => d === '0')) {
+      return integerPart;
+    }
 
+    // Trim trailing zeros
     for (let i = decimalPart.length - 1; i >= 0; i--) {
       if (decimalPart[i] !== '0') {
         decimalPart = decimalPart.substring(0, i + 1);

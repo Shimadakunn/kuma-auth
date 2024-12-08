@@ -1,21 +1,16 @@
-export type ContractType = {
+export type ProtocolType = {
   name: string;
   address: string;
-  ipoolAddress?: string;
-  wrappedAddress?: string;
-  tokenArray?: string[];
-  stakedTokenAddress?: string[];
-  stakedTokenBalance?: string[];
-  apys?: string[];
+  ipoolAddress: string;
 };
 
-export const contracts: {
-  [key: string]: ContractType;
+export const protocols: {
+  [key: string]: ProtocolType;
 } = {
   aave: {
     name: 'Aave',
-    address: "0x20040a64612555042335926d72B4E5F667a67fA1",
-    ipoolAddress: "0xBfC91D59fdAA134A4ED45f7B584cAf96D7792Eff",
+    address: '0x20040a64612555042335926d72B4E5F667a67fA1',
+    ipoolAddress: '0xBfC91D59fdAA134A4ED45f7B584cAf96D7792Eff',
   },
 };
 

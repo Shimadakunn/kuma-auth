@@ -1,11 +1,21 @@
-import { Button } from '@/components/ui/button';
-import { Send } from 'lucide-react';
+'use client';
 
-export function SendAction() {
+import { Button } from '@/components/ui/button';
+import { Transaction } from '@/lib/functions';
+import { useMe } from '@/providers';
+import { Send } from 'lucide-react';
+import { useState } from 'react';
+import { Hex } from 'viem';
+
+export function SendAction({ amount, to }: { amount: string; to: Hex }) {
+  const [loading, setLoading] = useState(false);
+  const { me, updateBalances } = useMe();
   return (
-    <Button className="mx-auto mb-3 w-[90%] bg-main text-white">
+    <Button
+      className="mx-auto mb-3 w-[90%] bg-main text-white"
+      onClick={() => Transaction(me!, amount, 'send', setLoading, updateBalances, to)}>
       <Send size={22} color="white" strokeWidth={2.5} className="mr-1" />
-      Send
+      {loading ? 'Sending...' : 'Send'}
     </Button>
   );
 }

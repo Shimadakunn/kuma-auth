@@ -6,8 +6,8 @@ export type TokenType = {
   network: ChainType;
   address: string;
   stakedTokenAddress: string;
-  rate: string;
-  balance: string;
+  balance?: string;
+  stakedBalance?: string;
   icon: string;
 };
 
@@ -20,9 +20,6 @@ export const tokens: {
     network: chains.arbitrum,
     address: '0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d',
     stakedTokenAddress: '0x460b97BD498E1157530AEb3086301d5225b91216',
-    rate: '0.000000000000000000',
-    balance: '12457',
-
     icon: '/tokens-icons/usdc.png',
   },
 };

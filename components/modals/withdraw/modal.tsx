@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from '@/components/ui/drawer';
-import { CreditCard, Send } from 'lucide-react';
+import { Landmark, Send } from 'lucide-react';
 import { useState } from 'react';
 
 import { SendModal } from '@/components/modals';
@@ -23,11 +23,11 @@ export function Withdraw({
           className="mx-auto mb-3 flex h-14 w-full items-center justify-center text-lg font-bold"
           onClick={() => setOpenSend(true)}>
           <Send size={20} color="black" strokeWidth={2.5} className="mr-1" />
-          Buy with card
+          Send to Address
         </Button>
         <Button className="mx-auto mb-8 flex h-14 w-full items-center justify-center bg-main text-lg font-bold text-white">
-          <CreditCard size={20} color="white" strokeWidth={3} className="mr-1" />
-          Buy with card
+          <Landmark size={20} color="white" strokeWidth={3} className="mr-1" />
+          Withdraw to Bank
         </Button>
       </DrawerContent>
       <SendModal openSend={openSend} setOpenSend={setOpenSend} />

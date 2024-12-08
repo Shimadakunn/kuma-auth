@@ -15,7 +15,7 @@ export function NumPad({ handleNumberPress, className }: NumPadProps) {
             key={num}
             onClick={() => handleNumberPress(num.toString())}
             className="flex h-16 flex-1 items-center justify-center rounded-lg hover:bg-gray-100">
-            <span className="font-[Gaeil] text-5xl">{num}</span>
+            <span className="px-1 font-[Gaeil] text-5xl">{num}</span>
           </button>
         ))}
       </div>
@@ -27,7 +27,7 @@ export function NumPad({ handleNumberPress, className }: NumPadProps) {
             key={num}
             onClick={() => handleNumberPress(num.toString())}
             className="flex h-16 flex-1 items-center justify-center rounded-lg hover:bg-gray-100">
-            <span className="font-[Gaeil] text-5xl">{num}</span>
+            <span className="px-1 font-[Gaeil] text-5xl">{num}</span>
           </button>
         ))}
       </div>
@@ -39,7 +39,7 @@ export function NumPad({ handleNumberPress, className }: NumPadProps) {
             key={num}
             onClick={() => handleNumberPress(num.toString())}
             className="flex h-16 flex-1 items-center justify-center rounded-lg hover:bg-gray-100">
-            <span className="font-[Gaeil] text-5xl">{num}</span>
+            <span className="px-1 font-[Gaeil] text-5xl">{num}</span>
           </button>
         ))}
       </div>
@@ -49,12 +49,12 @@ export function NumPad({ handleNumberPress, className }: NumPadProps) {
         <button
           onClick={() => handleNumberPress('.')}
           className="flex h-16 flex-1 items-center justify-center rounded-lg hover:bg-gray-100">
-          <span className="font-[Gaeil] text-5xl">.</span>
+          <span className=" px-1 font-[Gaeil] text-5xl">.</span>
         </button>
         <button
           onClick={() => handleNumberPress('0')}
           className="flex h-16 flex-1 items-center justify-center rounded-lg hover:bg-gray-100">
-          <span className="font-[Gaeil] text-5xl">0</span>
+          <span className="px-1 font-[Gaeil] text-5xl">0</span>
         </button>
         <button
           onClick={() => handleNumberPress('delete')}

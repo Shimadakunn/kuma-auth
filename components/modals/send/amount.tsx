@@ -22,7 +22,8 @@ export function AmountView({
           <p className="px-1 text-sm font-bold text-gray-400">
             Max:{' '}
             <span className="font-[Gaeil]">
-              {tokens.usdc.balance} {tokens.usdc.coin}
+              {parseFloat(tokens.usdc.balance!) + parseFloat(tokens.usdc.stakedBalance!)}{' '}
+              {tokens.usdc.coin}
             </span>
           </p>
         </div>
@@ -31,27 +32,53 @@ export function AmountView({
       <div className="flex items-center justify-around py-2">
         <button
           className="font-bold text-gray-400"
-          onClick={() => onChangeText((Number(tokens.usdc.balance) * 0.1).toString())}>
+          onClick={() =>
+            onChangeText(
+              ((Number(tokens.usdc.balance!) + Number(tokens.usdc.stakedBalance!)) * 0.1).toString()
+            )
+          }>
           10%
         </button>
         <button
           className="font-bold text-gray-400"
-          onClick={() => onChangeText((Number(tokens.usdc.balance) * 0.25).toString())}>
+          onClick={() =>
+            onChangeText(
+              (
+                (Number(tokens.usdc.balance!) + Number(tokens.usdc.stakedBalance!)) *
+                0.25
+              ).toString()
+            )
+          }>
           25%
         </button>
         <button
           className="font-bold text-gray-400"
-          onClick={() => onChangeText((Number(tokens.usdc.balance) * 0.5).toString())}>
+          onClick={() =>
+            onChangeText(
+              ((Number(tokens.usdc.balance!) + Number(tokens.usdc.stakedBalance!)) * 0.5).toString()
+            )
+          }>
           50%
         </button>
         <button
           className="font-bold text-gray-400"
-          onClick={() => onChangeText((Number(tokens.usdc.balance) * 0.75).toString())}>
+          onClick={() =>
+            onChangeText(
+              (
+                (Number(tokens.usdc.balance!) + Number(tokens.usdc.stakedBalance!)) *
+                0.75
+              ).toString()
+            )
+          }>
           75%
         </button>
         <button
           className="font-bold text-gray-400"
-          onClick={() => onChangeText(tokens.usdc.balance)}>
+          onClick={() =>
+            onChangeText(
+              (Number(tokens.usdc.balance!) + Number(tokens.usdc.stakedBalance!)).toString()
+            )
+          }>
           100%
         </button>
       </div>

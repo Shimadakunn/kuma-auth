@@ -31,7 +31,6 @@ export function Infos({
         </DrawerHeader>
 
         <Chart />
-        <Separator className="mx-auto w-[90%]" />
         <Balance />
         <Separator className="mx-auto w-[90%]" />
         <Informations />

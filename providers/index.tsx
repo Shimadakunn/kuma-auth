@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { saveUser } from "@/lib/factory";
-import { getUser } from "@/lib/factory/getUser";
-import { WebAuthn } from "@/lib/web-authn/service/web-authn";
-import { createContext, useContext, useEffect, useState } from "react";
-import { Address, Hex, zeroAddress } from "viem";
-import { Chain } from "viem/chains";
+import { saveUser } from '@/lib/factory';
+import { getUser } from '@/lib/factory/getUser';
+import { WebAuthn } from '@/lib/web-authn/service/web-authn';
+import { fetch } from '@/utils';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { Address, Hex, zeroAddress } from 'viem';
 
 export type Me = {
   account: Address;
@@ -16,20 +16,24 @@ export type Me = {
   };
 };
 
+export type Balances = {
+  balance: string;
+  stakedBalance: string;
+};
+
 function useMeHook() {
   const [isLoading, setIsLoading] = useState(false);
   const [me, setMe] = useState<Me | null>();
-  const [isReturning, setIsReturning] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const [chain, switchChain] = useState<Chain | undefined>();
+  const [balances, setBalances] = useState<Balances>({ balance: '0', stakedBalance: '0' });
 
   function disconnect() {
-    localStorage.removeItem("passkeys4337.me");
+    localStorage.removeItem('kuma.me');
+    setBalances({ balance: '0', stakedBalance: '0' });
     setMe(null);
   }
 
   async function create(username: string) {
-    console.log("creating user", username);
     setIsLoading(true);
 
     try {
@@ -49,7 +53,7 @@ function useMeHook() {
       };
 
       if (me === undefined) {
-        console.log("error while saving user");
+        console.log('error while saving user');
         return;
       }
 
@@ -61,11 +65,7 @@ function useMeHook() {
       //   pubKey: user!.pubKey,
       // });
 
-      console.log("creation success", me);
-      alert("creation success");
-      localStorage.setItem("passkeys4337.me", JSON.stringify(me));
-      localStorage.setItem("passkeys4337.returning", "true");
-      setIsReturning(true);
+      localStorage.setItem('kuma.me', JSON.stringify(me));
       setMe(me);
     } catch (e) {
       alert(e);
@@ -85,7 +85,7 @@ function useMeHook() {
       const user = await getUser(credential.rawId);
 
       if (user?.account === undefined || user?.account === zeroAddress) {
-        throw new Error("user not found");
+        throw new Error('user not found');
       }
 
       const me = {
@@ -94,12 +94,9 @@ function useMeHook() {
         account: user.account,
       };
 
-      localStorage.setItem("passkeys4337.me", JSON.stringify(me));
-      localStorage.setItem("passkeys4337.returning", "true");
-      setIsReturning(true);
+      localStorage.setItem('kuma.me', JSON.stringify(me));
       setMe(me);
     } catch (e) {
-      localStorage.removeItem("passkeys4337.returning");
       disconnect();
       console.error(e);
     } finally {
@@ -107,32 +104,47 @@ function useMeHook() {
     }
   }
 
+  const updateBalances = async (account: Address) => {
+    const newBalances = await fetch(account);
+    setBalances(newBalances);
+  };
+
   useEffect(() => {
-    const me = localStorage.getItem("passkeys4337.me");
-    const returning = localStorage.getItem("passkeys4337.returning");
+    const me = localStorage.getItem('kuma.me');
     if (me) {
       try {
-        setMe(JSON.parse(me));
+        const parsedMe = JSON.parse(me);
+        setMe(parsedMe);
+        updateBalances(parsedMe.account);
       } catch (e) {
-        console.log("error while parsing me", e);
+        console.log('error while parsing me', e);
       }
-    }
-    if (returning === "true") {
-      setIsReturning(true);
     }
     setIsMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (me?.account) {
+      updateBalances(me.account);
+    }
+    const interval = setInterval(() => {
+      if (me?.account) {
+        updateBalances(me.account);
+      }
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, [me?.account]);
 
   return {
     isLoading,
     isMounted,
     me,
-    returning: isReturning,
+    balances,
     create,
     get,
     disconnect,
-    chain,
-    switchChain,
+    updateBalances,
   };
 }
 
@@ -142,7 +154,7 @@ const MeContext = createContext<UseMeHook | null>(null);
 export const useMe = (): UseMeHook => {
   const context = useContext(MeContext);
   if (!context) {
-    throw new Error("useMeHook must be used within a MeProvider");
+    throw new Error('useMeHook must be used within a MeProvider');
   }
   return context;
 };

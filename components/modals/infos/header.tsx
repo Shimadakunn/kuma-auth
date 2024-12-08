@@ -7,9 +7,9 @@ const LottiePlayer = dynamic(() => import('lottie-react'), {
 import Image from 'next/image';
 import { useRef } from 'react';
 
+import { tokens } from '@/constants';
 import verifiedAnimation from '@/public/animation/verified.json';
 import { LottieRefCurrentProps } from 'lottie-react';
-import { tokens } from '@/constants';
 
 export function Header() {
   const animationRef = useRef<LottieRefCurrentProps>(null);
@@ -41,12 +41,12 @@ export function Header() {
         </div>
       </div>
       <div className="flex h-full flex-col items-end justify-end">
-        {/* <h1 className="px-1 font-black text-gray-500">
-          <span className="font-[Gaeil] text-xl ">+24</span>
-          <span className="text-sm">%</span>
-        </h1> */}
+        <h1 className="px-1 font-black text-gray-500">
+          {/* <span className="font-[Gaeil] text-xl ">+24</span> */}
+          <span className="text-sm">APY</span>
+        </h1>
         <h1 className="px-1 font-black">
-          <span className="font-[Gaeil] text-3xl">12,4</span>
+          <span className="font-[Gaeil] text-3xl">15,2</span>
           <span className="text-xl">%</span>
         </h1>
       </div>

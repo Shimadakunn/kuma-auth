@@ -1,15 +1,23 @@
+import { useToast } from '@/hooks/use-toast';
+import { useMe } from '@/providers';
 import { Copy } from 'lucide-react';
-import { toast } from 'sonner';
+
 export function WalletAddress() {
-  const walletAddress = '0x23...009090789';
+  const { toast } = useToast();
+  const { me } = useMe();
+  const walletAddress = me?.account;
 
   const handleCopy = async () => {
-    console.log('Copying to clipboard...');
     try {
-      toast.success('Copied to clipboard');
-      await navigator.clipboard.writeText(walletAddress);
+      navigator.clipboard.writeText(walletAddress!);
+      toast({
+        title: 'Copied to clipboard',
+      });
     } catch (err) {
-      console.error('Failed to copy:', err);
+      toast({
+        title: 'Failed to copy',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -18,14 +26,9 @@ export function WalletAddress() {
       <h2 className="font-lexend text-center text-xl font-bold">Wallet Address</h2>
       <div className="mb-6 flex items-center justify-center gap-2">
         <span className="font-lexend text-center text-lg font-bold text-gray-500">
-          {walletAddress}
+          {walletAddress?.slice(0, 6)}...{walletAddress?.slice(-6)}
         </span>
-        <button
-          onClick={() => {
-            navigator.clipboard.writeText(walletAddress);
-            toast.success('Copied to clipboard');
-          }}
-          className="transition-opacity hover:opacity-80">
+        <button onClick={handleCopy} className="transition-opacity hover:opacity-80">
           <Copy size={15} className="text-gray-500" />
         </button>
       </div>

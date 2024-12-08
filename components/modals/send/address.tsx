@@ -1,8 +1,7 @@
+import { useToast } from '@/hooks/use-toast';
 import { ClipboardIcon, EraserIcon, ScanIcon } from 'lucide-react';
 import { useState } from 'react';
-import { toast } from 'sonner';
 import { ScanModal } from '../scan';
-
 export function AddressInput({
   value,
   onChangeText,
@@ -11,7 +10,7 @@ export function AddressInput({
   onChangeText: (text: string) => void;
 }) {
   const [showScan, setShowScan] = useState(false);
-
+  const { toast } = useToast();
   const handlePaste = async () => {
     try {
       const text = await navigator.clipboard.readText();
@@ -19,10 +18,16 @@ export function AddressInput({
         onChangeText(text);
       } else {
         console.log('invalid');
-        toast.error('Invalid address');
+        toast({
+          title: 'Invalid address',
+          variant: 'destructive',
+        });
       }
     } catch (error) {
-      toast.error('Failed to access clipboard');
+      toast({
+        title: 'Failed to access clipboard',
+        variant: 'destructive',
+      });
     }
   };
 

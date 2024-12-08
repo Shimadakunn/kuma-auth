@@ -10,8 +10,9 @@ import { Send } from 'lucide-react';
 import { SendAction } from './action';
 
 import { tokens } from '@/constants';
+import { useToast } from '@/hooks/use-toast';
 import { useState } from 'react';
-import { toast } from 'sonner';
+import { Hex } from 'viem';
 import { AddressInput } from './address';
 import { AmountView } from './amount';
 import { NumPad } from './numpad';
@@ -23,6 +24,7 @@ export function SendModal({
   openSend: boolean;
   setOpenSend: (open: boolean) => void;
 }) {
+  const { toast } = useToast();
   const [address, setAddress] = useState('');
   const [amount, setAmount] = useState('');
 
@@ -37,10 +39,21 @@ export function SendModal({
       const newAmount = amount + value;
       const numericAmount = parseFloat(newAmount);
 
-      if (!isNaN(numericAmount) && numericAmount <= Number(tokens.usdc.balance)) {
+      if (
+        !isNaN(numericAmount) &&
+        numericAmount <= Number(tokens.usdc.stakedBalance) + Number(tokens.usdc.balance)
+      ) {
         setAmount(newAmount);
+        toast({
+          title: 'Amount is valid',
+          description: 'Please enter a valid amount',
+        });
       } else {
-        toast.error('Amount is greater than balance');
+        console.log('Amount is greater than balance');
+        toast({
+          title: 'Amount is greater than balance',
+          description: 'Please enter a valid amount',
+        });
       }
     }
   };
@@ -52,7 +65,7 @@ export function SendModal({
         <DrawerHeader className="py-2">
           <DrawerTitle className="flex items-center text-2xl font-bold">
             <Send size={20} color="black" strokeWidth={2.5} className="mr-1" />
-            Send
+            Send to Address
           </DrawerTitle>
         </DrawerHeader>
         <AddressInput value={address} onChangeText={setAddress} />
@@ -64,7 +77,7 @@ export function SendModal({
 
         {/* Footer */}
         <DrawerFooter>
-          <SendAction />
+          <SendAction amount={amount} to={address as Hex} />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

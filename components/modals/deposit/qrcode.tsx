@@ -1,9 +1,11 @@
+import { useMe } from '@/providers';
 import { QrCode } from 'react-qrcode-pretty';
 
 export const QRCode = () => {
+  const { me } = useMe();
   return (
     <QrCode
-      value={'as;ldkfjaslfdkjsadl;fkjasdf'}
+      value={me!.account!}
       image={'/logo.png'}
       level="L"
       variant={{

@@ -1,8 +1,6 @@
 'use client';
 
-import { Deposit } from '@/components/modals/deposit';
-import { Infos } from '@/components/modals/infos';
-import { Withdraw } from '@/components/modals/withdraw';
+import { Deposit, Infos, Withdraw } from '@/components/modals';
 import { Button } from '@/components/ui/button';
 import { ChartNoAxesGantt, CreditCard } from 'lucide-react';
 import { useState } from 'react';

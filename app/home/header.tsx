@@ -1,10 +1,23 @@
-import Image from "next/image";
+'use client';
+
+import { useMe } from '@/providers';
+import { Settings } from 'lucide-react';
+import Image from 'next/image';
 
 export function Header() {
+  const { me, disconnect } = useMe();
   return (
-    <div className="flex items-center justify-center gap-1 h-[10vh]">
-      <Image src="/logo.png" alt="logo" width={40} height={40} />
-      <h1 className="font-black text-4xl">Morpho Labs</h1>
+    <div className="flex h-[10vh] items-center justify-between gap-1 px-6">
+      <div className="flex items-center gap-1">
+        <Image src="/logo.png" alt="logo" width={25} height={25} />
+        <h1 className="text-2xl font-black">Morpho Labs</h1>
+      </div>
+      <div
+        onClick={() => {
+          disconnect();
+        }}>
+        <Settings />
+      </div>
     </div>
   );
 }
