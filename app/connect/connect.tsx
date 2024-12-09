@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="relative flex h-[100vh] w-full flex-col items-center justify-between">
       <div className=" flex h-16 w-full items-center justify-start px-4">
-        <h1 className="text-2xl font-black">Morpho Labs</h1>
+        <h1 className="text-2xl font-black">Kuma</h1>
       </div>
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-4xl font-black">Connect Account</h1>

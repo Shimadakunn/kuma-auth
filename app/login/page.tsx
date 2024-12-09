@@ -5,7 +5,7 @@ export default function Home() {
     <div className="flex h-[100vh] w-full flex-col items-center justify-center">
       <div className="flex h-[10vh] items-center justify-center gap-1">
         <Image src="/logo.png" alt="logo" width={40} height={40} />
-        <h1 className="text-4xl font-black">Morpho Labs</h1>
+        <h1 className="text-4xl font-black">Kuma</h1>
       </div>
       <Image
         src="/illustration.png"
