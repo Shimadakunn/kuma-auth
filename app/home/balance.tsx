@@ -2,7 +2,6 @@
 
 import { useMe } from '@/providers';
 
-import { formatBalance } from '@/utils';
 import { useState } from 'react';
 
 export function Balance() {
@@ -14,7 +13,8 @@ export function Balance() {
   return (
     <div className="flex h-[20vh] w-auto items-center justify-center">
       <h1 className="px-2 font-[Gaeil] text-7xl font-black">
-        ${balances.balance ? formatBalance(totalBalance) : 'NOT LOADED'}
+        {/* ${balances.balance ? formatBalance(totalBalance) : 'NOT LOADED'} */}
+        $5,456.97
       </h1>
     </div>
   );

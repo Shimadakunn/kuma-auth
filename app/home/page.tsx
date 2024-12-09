@@ -7,7 +7,7 @@ import { Infos } from './stats';
 
 const Home = () => {
   return (
-    <div className="h-[100vh] w-full border">
+    <div className="h-[100vh] w-full">
       <Header />
       <Balance />
       <Chart />

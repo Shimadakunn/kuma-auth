@@ -1,5 +1,4 @@
 import { useMe } from '@/providers';
-import { formatBalance } from '@/utils';
 import { Send } from 'lucide-react';
 import { useState } from 'react';
 import { SendModal } from '../send';
@@ -15,7 +14,8 @@ export function Balance() {
       <div className="">
         <p className="text-sm font-bold text-gray-500">Your Balance</p>
         <p className="px-1 font-[Gaeil] text-4xl font-black">
-          {balances.balance ? formatBalance(totalBalance, 2) : 'NOT LOADED'} USDC
+          {/* {balances.balance ? formatBalance(totalBalance, 2) : 'NOT LOADED'} USDC */}
+          5,456.97 USDC
         </p>
       </div>
       <div className="flex flex-col items-center justify-center">

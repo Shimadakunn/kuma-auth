@@ -46,7 +46,7 @@ export function Header() {
           <span className="text-sm">APY</span>
         </h1>
         <h1 className="px-1 font-black">
-          <span className="font-[Gaeil] text-3xl">15,2</span>
+          <span className="font-[Gaeil] text-3xl">12,4</span>
           <span className="text-xl">%</span>
         </h1>
       </div>
