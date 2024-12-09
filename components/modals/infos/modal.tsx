@@ -37,7 +37,7 @@ export function Infos({
         <Separator className="mx-auto w-[90%]" />
         <Description />
 
-        <DrawerFooter className="mt-0 border py-0">
+        <DrawerFooter className="mt-0 py-0">
           <DrawerClose asChild>
             <Button flat className="flex items-center justify-center py-2 text-xl">
               Close
