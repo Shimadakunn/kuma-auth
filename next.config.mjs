@@ -4,4 +4,6 @@ const withPWA = withPWAInit({
   dest: 'public',
 });
 
-export default withPWA({});
+export default withPWA({
+  reactStrictMode: true,
+});
