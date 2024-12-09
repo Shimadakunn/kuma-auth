@@ -22,7 +22,7 @@ export function Deposit({
 }) {
   return (
     <Drawer open={openDeposit} onOpenChange={setOpenDeposit}>
-      <DrawerContent className="h-[70vh]">
+      <DrawerContent className="h-[80vh]">
         <DrawerHeader className="h-0 p-0">
           <DrawerTitle className="h-0 p-0"></DrawerTitle>
         </DrawerHeader>

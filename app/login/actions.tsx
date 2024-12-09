@@ -13,7 +13,7 @@ export function Actions() {
   const router = useRouter();
   const { me, create, get } = useMe();
   return (
-    <div className="flex h-[10vh] w-full flex-row items-center justify-center">
+    <div className="flex h-[10vh] w-full flex-row items-start justify-center ">
       {creating ? (
         <>
           <Button className="mr-4 p-2" onClick={() => setCreating(false)} flat>

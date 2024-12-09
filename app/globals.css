@@ -42,7 +42,7 @@
     @apply max-h-[100vh] overflow-hidden border-black;
   }
   body {
-    @apply bg-background text-black;
+    @apply max-h-[100vh] overflow-hidden bg-background text-black;
   }
 }
 
