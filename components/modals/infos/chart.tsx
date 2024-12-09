@@ -6,7 +6,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart';
-import { cn } from '@/lib/utils';
 import { useState } from 'react';
 const chartData = [
   { month: 'January', apy: 12.3 },
@@ -27,7 +26,7 @@ const chartConfig = {
 export function Chart() {
   const [period, setPeriod] = useState('1H');
   return (
-    <div className="flex h-[35vh] flex-col items-center justify-center">
+    <div className="flex h-[30vh] flex-col items-center justify-center">
       <ChartContainer config={chartConfig} className="h-full w-full">
         <AreaChart
           accessibilityLayer
@@ -59,7 +58,7 @@ export function Chart() {
           />
         </AreaChart>
       </ChartContainer>
-      <div className="flex h-[5vh] w-full items-center justify-center gap-8">
+      {/* <div className="flex h-[5vh] w-full items-center justify-center gap-8">
         <button
           className={cn(
             'rounded-full  p-2 text-sm font-bold text-gray-400',
@@ -100,7 +99,7 @@ export function Chart() {
           }}>
           1M
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
