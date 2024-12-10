@@ -32,7 +32,7 @@ export function Actions() {
               await create(username);
             }}>
             Create
-            <Image src="/logo.png" alt="logo" width={20} height={20} />
+            <Image src="/morpho.svg" alt="logo" width={20} height={20} />
           </Button>
         </>
       ) : (
@@ -41,7 +41,7 @@ export function Actions() {
             className="mr-5 flex h-14 w-[42vw] items-center justify-center gap-1 p-0"
             onClick={() => setCreating(true)}>
             Create
-            <Image src="/logo.png" alt="logo" width={25} height={25} />
+            {/* <Image src="/morpho.svg" alt="logo" width={25} height={25} /> */}
           </Button>
           <Button
             className="flex h-14 w-[42vw] items-center justify-center gap-1 bg-main p-0 text-white"
@@ -49,7 +49,7 @@ export function Actions() {
               await get();
             }}>
             Connect
-            <Image src="/logo.png" alt="logo" width={25} height={25} />
+            {/* <Image src="/morpho.svg" alt="logo" width={25} height={25} /> */}
           </Button>
         </>
       )}

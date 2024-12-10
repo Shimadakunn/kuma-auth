@@ -10,13 +10,22 @@ import {
 } from '@/components/ui/chart';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+// const chartData = [
+//   { month: 'January', balance: 10.5 },
+//   { month: 'February', balance: 11.2 },
+//   { month: 'March', balance: 12.1 },
+//   { month: 'April', balance: 13.4 },
+//   { month: 'May', balance: 14.3 },
+//   { month: 'June', balance: 15.2 },
+// ];
+
 const chartData = [
-  { month: 'January', balance: 10.5 },
-  { month: 'February', balance: 11.2 },
-  { month: 'March', balance: 12.1 },
-  { month: 'April', balance: 13.4 },
-  { month: 'May', balance: 14.3 },
-  { month: 'June', balance: 15.2 },
+  { month: 'January', balance: 10 },
+  { month: 'February', balance: 10 },
+  { month: 'March', balance: 10 },
+  { month: 'April', balance: 10 },
+  { month: 'May', balance: 10 },
+  { month: 'June', balance: 10 },
 ];
 
 const chartConfig = {

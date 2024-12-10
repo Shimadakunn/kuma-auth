@@ -12,7 +12,7 @@ const Supply = () => {
         <Info size={13} className="text-gray-500" strokeWidth={2.5} />
       </div>
       <div className="flex flex-row items-center justify-center">
-        <p className="pl-1 font-[Gaeil] text-xl font-black">$285.21</p>
+        <p className="pl-1 font-[Gaeil] text-xl font-black">$81.972</p>
         <p className="mt-1 text-sm font-black">M</p>
       </div>
     </div>
@@ -29,7 +29,7 @@ const Liquidity = () => {
       </div>
 
       <div className="flex flex-row items-center justify-center">
-        <p className="pl-1 font-[Gaeil] text-xl font-black">$23.82</p>
+        <p className="pl-1 font-[Gaeil] text-xl font-black">$24.489</p>
         <p className="mt-1 text-sm font-black">M</p>
       </div>
     </div>

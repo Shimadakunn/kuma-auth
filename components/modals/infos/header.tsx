@@ -25,7 +25,7 @@ export function Header() {
           className="h-14 w-14"
         />
         <div className="flex flex-row items-center justify-center gap-1">
-          <h2 className="mt-1 text-xl font-bold">Kuma Vault</h2>
+          <h2 className="mt-1 text-xl font-bold">Gauntlet USDC Core</h2>
           <div className="mt-1">
             <LottiePlayer
               lottieRef={animationRef}
@@ -46,7 +46,7 @@ export function Header() {
           <span className="text-sm">APY</span>
         </h1>
         <h1 className="px-1 font-black">
-          <span className="font-[Gaeil] text-3xl">12,4</span>
+          <span className="font-[Gaeil] text-3xl">14,24</span>
           <span className="text-xl">%</span>
         </h1>
       </div>

@@ -10,6 +10,7 @@ export function WalletAddress() {
   const handleCopy = async () => {
     try {
       navigator.clipboard.writeText(walletAddress!);
+      console.log('Copied to clipboard');
       toast({
         title: 'Copied to clipboard',
       });
