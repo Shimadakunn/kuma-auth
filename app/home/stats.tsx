@@ -31,12 +31,12 @@ export function Infos() {
       {/* <div className="flex w-full items-center justify-around gap-4">
         <button
           className="rounded-md border border-gray-500 px-4 py-2 text-black"
-          onClick={() => Transaction(me!, '1', 'withdraw', setIsLoading, updateBalances)}>
+          onClick={() => Transaction(me!, '1.5', 'withdraw', setIsLoading, updateBalances)}>
           {isLoading ? 'Withdrawing...' : 'Withdraw'}
         </button>
         <button
           className="rounded-md border border-gray-500 px-4 py-2 text-black"
-          onClick={() => Transaction(me!, '1', 'supply', setIsLoading, updateBalances)}>
+          onClick={() => Transaction(me!, '1.5', 'supply', setIsLoading, updateBalances)}>
           {isLoading ? 'Supplying...' : 'Supply'}
         </button>
       </div>

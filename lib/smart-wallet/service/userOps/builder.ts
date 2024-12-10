@@ -5,7 +5,6 @@ import {
   Hex,
   PublicClient,
   WalletClient,
-  concat,
   createPublicClient,
   createWalletClient,
   encodeAbiParameters,
@@ -14,8 +13,6 @@ import {
   getContract,
   http,
   parseAbi,
-  parseAbiParameters,
-  parseUnits,
   toHex,
   zeroAddress,
 } from 'viem';
@@ -26,7 +23,6 @@ import {
   FACTORY_ABI,
   FACTORY_ADDRESS,
   chains,
-  tokens,
 } from '@/constants';
 import { smartWallet } from '@/lib/smart-wallet';
 import { DEFAULT_USER_OP } from '@/lib/smart-wallet/service/userOps/constants';
@@ -120,7 +116,7 @@ export class UserOpBuilder {
 
     // set gas limits with the estimated values
     userOp.callGasLimit = (BigInt(callGasLimit) * BigInt(4)) / BigInt(100);
-    userOp.preVerificationGas = BigInt(preVerificationGas);
+    userOp.preVerificationGas = BigInt(preVerificationGas) * BigInt(4);
     userOp.verificationGasLimit = BigInt(verificationGasLimit) + BigInt(initCodeGas);
 
     console.log('callGasLimit', userOp.callGasLimit);

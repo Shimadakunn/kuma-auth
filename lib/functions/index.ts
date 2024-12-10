@@ -16,9 +16,10 @@ export async function Transaction(
   functionName: TransactionType,
   setIsLoading: (loading: boolean) => void,
   updateBalances: (account: Address) => Promise<void>,
+  setSuccess?: (receipt: string | null) => void,
   to?: string
 ) {
-  setIsLoading(true);
+  setSuccess?.(null);
   try {
     const { maxFeePerGas, maxPriorityFeePerGas }: EstimateFeesPerGasReturnType =
       await smartWallet.client.estimateFeesPerGas();
@@ -46,15 +47,19 @@ export async function Transaction(
       maxPriorityFeePerGas: maxPriorityFeePerGas as bigint,
       keyId: me?.keyId as Hex,
     });
+    setIsLoading(true);
     console.log('userOp', userOp);
     const hash = await smartWallet.sendUserOperation({ userOp });
-    if (hash === null) {
+    console.log('hash', hash);
+    if (!hash.startsWith('0x')) {
       throw new Error('Transaction failed');
     }
     const receipt = await smartWallet.waitForUserOperationReceipt({ hash });
+    setSuccess?.(receipt);
     return receipt;
   } catch (error) {
     console.log('error in transaction');
+    setSuccess?.('error');
     throw error;
   } finally {
     await updateBalances(me.account);
