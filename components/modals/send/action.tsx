@@ -13,7 +13,7 @@ export function SendAction({ amount, to }: { amount: string; to: Hex }) {
   return (
     <Button
       className="mx-auto mb-3 w-[90%] bg-main text-white"
-      onClick={() => Transaction(me!, amount, 'send', setLoading, updateBalances, to)}>
+      onClick={() => Transaction(me!, amount, 'send', setLoading, updateBalances, undefined, to)}>
       <Send size={22} color="white" strokeWidth={2.5} className="mr-1" />
       {loading ? 'Sending...' : 'Send'}
     </Button>
