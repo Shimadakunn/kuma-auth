@@ -25,7 +25,7 @@ export function Header() {
           className="h-14 w-14"
         />
         <div className="flex flex-row items-center justify-center gap-1">
-          <h2 className="mt-1 text-xl font-bold">Gauntlet USDC Core</h2>
+          <h2 className="mt-1 text-xl font-bold">Aave USDC Lending Pools</h2>
           <div className="mt-1">
             <LottiePlayer
               lottieRef={animationRef}
