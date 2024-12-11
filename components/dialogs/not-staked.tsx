@@ -22,6 +22,7 @@ const LottiePlayer = dynamic(() => import('lottie-react'), {
   ssr: false,
 });
 
+import { AlertDialogAction } from '@radix-ui/react-alert-dialog';
 import { LottieRefCurrentProps } from 'lottie-react';
 
 export function NotStaked() {
@@ -93,6 +94,25 @@ export function NotStaked() {
         {success === 'error' && (
           <>
             <h1 className="text-center text-2xl font-bold">Transaction failed</h1>
+            <AlertDialogFooter>
+              <AlertDialogCancel>
+                <Button
+                  className="h-12 w-full text-xl"
+                  flat
+                  onClick={() =>
+                    Transaction(
+                      me!,
+                      balances.balance,
+                      'supply',
+                      setIsLoading,
+                      updateBalances,
+                      setSuccess
+                    )
+                  }>
+                  Close
+                </Button>
+              </AlertDialogCancel>
+            </AlertDialogFooter>
           </>
         )}
         {!isLoading && success === null && (
@@ -105,21 +125,24 @@ export function NotStaked() {
               rewards.
             </AlertDialogDescription>
             <AlertDialogFooter className="p-2">
-              <Button
-                className="h-12 w-full text-xl"
-                onClick={() =>
-                  Transaction(
-                    me!,
-                    balances.balance,
-                    'supply',
-                    setIsLoading,
-                    updateBalances,
-                    setSuccess
-                  )
-                }>
-                {isLoading ? 'Staking...' : 'Stake'}
-              </Button>
-              <AlertDialogCancel className="h-12 w-full text-xl">Cancel</AlertDialogCancel>
+              <AlertDialogAction>
+                <Button
+                  className="h-12 w-full text-xl"
+                  flat
+                  onClick={() =>
+                    Transaction(
+                      me!,
+                      balances.balance,
+                      'supply',
+                      setIsLoading,
+                      updateBalances,
+                      setSuccess
+                    )
+                  }>
+                  {isLoading ? 'Staking...' : 'Stake'}
+                </Button>
+              </AlertDialogAction>
+              {/* <AlertDialogCancel className="h-12 w-full text-xl">Cancel</AlertDialogCancel> */}
             </AlertDialogFooter>
           </>
         )}
