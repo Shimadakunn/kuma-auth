@@ -22,7 +22,6 @@ const LottiePlayer = dynamic(() => import('lottie-react'), {
   ssr: false,
 });
 
-import { AlertDialogAction } from '@radix-ui/react-alert-dialog';
 import { LottieRefCurrentProps } from 'lottie-react';
 
 export function NotStaked() {
@@ -32,6 +31,7 @@ export function NotStaked() {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const { me, balances, updateBalances } = useMe();
+
   useEffect(() => {
     if (balances.balance !== '0') setOpen(true);
     else setOpen(false);
@@ -125,23 +125,21 @@ export function NotStaked() {
               rewards.
             </AlertDialogDescription>
             <AlertDialogFooter className="p-2">
-              <AlertDialogAction>
-                <Button
-                  className="h-12 w-full text-xl"
-                  flat
-                  onClick={() =>
-                    Transaction(
-                      me!,
-                      balances.balance,
-                      'supply',
-                      setIsLoading,
-                      updateBalances,
-                      setSuccess
-                    )
-                  }>
-                  {isLoading ? 'Staking...' : 'Stake'}
-                </Button>
-              </AlertDialogAction>
+              <Button
+                className="h-12 w-full text-xl"
+                flat
+                onClick={() =>
+                  Transaction(
+                    me!,
+                    balances.balance,
+                    'supply',
+                    setIsLoading,
+                    updateBalances,
+                    setSuccess
+                  )
+                }>
+                {isLoading ? 'Staking...' : 'Stake'}
+              </Button>
               <AlertDialogCancel className="h-12 w-full text-xl">Cancel</AlertDialogCancel>
             </AlertDialogFooter>
           </>

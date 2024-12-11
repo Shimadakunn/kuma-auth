@@ -55,7 +55,8 @@ export async function Transaction(
       throw new Error('Transaction failed');
     }
     const receipt = await smartWallet.waitForUserOperationReceipt({ hash });
-    setSuccess?.(receipt);
+    setIsLoading(false);
+    setSuccess?.('success');
     await new Promise((resolve) => setTimeout(resolve, 3000));
     return receipt;
   } catch (error) {
