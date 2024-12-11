@@ -142,7 +142,7 @@ export function NotStaked() {
                   {isLoading ? 'Staking...' : 'Stake'}
                 </Button>
               </AlertDialogAction>
-              {/* <AlertDialogCancel className="h-12 w-full text-xl">Cancel</AlertDialogCancel> */}
+              <AlertDialogCancel className="h-12 w-full text-xl">Cancel</AlertDialogCancel>
             </AlertDialogFooter>
           </>
         )}
