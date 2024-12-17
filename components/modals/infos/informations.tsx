@@ -1,7 +1,9 @@
+import { chains } from '@/constants';
 import { Coins, HandCoins, Info, Link } from 'lucide-react';
+import { Anybody } from 'next/font/google';
 import Image from 'next/image';
 
-import { chains } from '@/constants';
+const anybody = Anybody({ subsets: ['latin'] });
 
 const Supply = () => {
   return (
@@ -11,9 +13,9 @@ const Supply = () => {
         <p className="text-sm font-bold">Total Supply</p>
         <Info size={13} className="text-gray-500" strokeWidth={2.5} />
       </div>
-      <div className="flex flex-row items-center justify-center">
-        <p className="pl-1 font-[Gaeil] text-xl font-black">$81.972</p>
-        <p className="mt-1 text-sm font-black">M</p>
+      <div className="flex flex-row items-center justify-center ">
+        <p className={`pl-1 text-lg font-bold ${anybody.className}`}>$81.972</p>
+        <p className="text-sm font-bold">M</p>
       </div>
     </div>
   );
@@ -29,8 +31,8 @@ const Liquidity = () => {
       </div>
 
       <div className="flex flex-row items-center justify-center">
-        <p className="pl-1 font-[Gaeil] text-xl font-black">$24.489</p>
-        <p className="mt-1 text-sm font-black">M</p>
+        <p className={`pl-1 text-lg font-bold ${anybody.className}`}>$24.489</p>
+        <p className="text-sm font-bold">M</p>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ export const QRCode = () => {
   return (
     <QrCode
       value={me!.account!}
-      image={'/aave.svg'}
+      image={'/logo.png'}
       level="L"
       variant={{
         eyes: 'fluid',

@@ -32,7 +32,7 @@ export function Actions() {
               await create(username);
             }}>
             Create
-            <Image src="/aave.svg" alt="logo" width={20} height={20} />
+            <Image src="/logo.png" alt="logo" width={20} height={20} />
           </Button>
         </>
       ) : (

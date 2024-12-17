@@ -1,5 +1,8 @@
 import { tokens } from '@/constants';
 import Image from 'next/image';
+import { Anybody } from 'next/font/google';
+
+const anybody = Anybody({ subsets: ['latin'] });
 
 export function AmountView({
   value,
@@ -13,15 +16,15 @@ export function AmountView({
       <div className="flex items-center justify-between">
         <div>
           {value ? (
-            <p className="px-1 font-[Gaeil] text-5xl font-black">{value}</p>
+            <p className={`px-1 text-5xl font-bold ${anybody.className}`}>{value}</p>
           ) : (
-            <p className="px-1 font-[Gaeil] text-5xl font-bold text-gray-400">
+            <p className={`px-1 text-5xl font-bold ${anybody.className} text-gray-400`}>
               0 {tokens.usdc.coin}
             </p>
           )}
           <p className="px-1 text-sm font-bold text-gray-400">
             Max:{' '}
-            <span className="font-[Gaeil]">
+            <span className={`font-bold ${anybody.className}`}>
               {parseFloat(tokens.usdc.balance!) + parseFloat(tokens.usdc.stakedBalance!)}{' '}
               {tokens.usdc.coin}
             </span>
