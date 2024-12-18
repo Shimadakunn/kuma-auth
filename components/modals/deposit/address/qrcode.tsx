@@ -13,8 +13,8 @@ export const QRCode = () => {
         body: 'rounded',
       }}
       color={{
-        eyes: '#556CDE',
-        body: '#556CDE',
+        eyes: '#000',
+        body: '#000',
       }}
       padding={0}
       margin={0}

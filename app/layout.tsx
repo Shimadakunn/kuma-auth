@@ -9,9 +9,9 @@ import './globals.css';
 
 const lexend = Lexend({ subsets: ['latin'] });
 
-const APP_NAME = 'Kuma';
-const APP_DEFAULT_TITLE = 'Kuma';
-const APP_TITLE_TEMPLATE = '%s - Kuma';
+const APP_NAME = 'booklet';
+const APP_DEFAULT_TITLE = 'booklet';
+const APP_TITLE_TEMPLATE = '%s - booklet';
 const APP_DESCRIPTION = 'High yield for your assets';
 
 export const metadata: Metadata = {

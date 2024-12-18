@@ -63,7 +63,7 @@ export function Informations() {
       <p className="text-sm font-bold text-gray-500">Vault Information</p>
       <Supply />
       <Liquidity />
-      <Token />
+      {/* <Token /> */}
     </div>
   );
 }

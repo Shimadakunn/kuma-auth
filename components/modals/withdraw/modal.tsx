@@ -20,12 +20,15 @@ export function Withdraw({
           <DrawerTitle className="text-2xl font-bold">Withdraw</DrawerTitle>
         </DrawerHeader>
         <Button
+          flat
           className="mx-auto mb-3 flex h-14 w-full items-center justify-center text-lg font-bold"
           onClick={() => setOpenSend(true)}>
           <Send size={20} color="black" strokeWidth={2.5} className="mr-1" />
           Send to Address
         </Button>
-        <Button className="mx-auto mb-8 flex h-14 w-full items-center justify-center bg-main text-lg font-bold text-white">
+        <Button
+          flat
+          className="mx-auto mb-8 flex h-14 w-full items-center justify-center bg-black text-lg font-bold text-white">
           <Landmark size={20} color="white" strokeWidth={3} className="mr-1" />
           Withdraw to Bank
         </Button>

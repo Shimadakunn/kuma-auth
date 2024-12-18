@@ -6,6 +6,7 @@ import { ChevronLeft } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 export function Actions() {
   const [creating, setCreating] = useState(false);
@@ -16,40 +17,46 @@ export function Actions() {
     <div className="flex h-[10vh] w-full flex-row items-start justify-center ">
       {creating ? (
         <>
-          <Button className="mr-4 p-2" onClick={() => setCreating(false)} flat>
+          <Button
+            className="flex items-center justify-center gap-1 pl-2 pr-3 text-base font-bold"
+            onClick={() => setCreating(false)}
+            flat>
             <ChevronLeft size={24} color="black" />
+            Back
           </Button>
-          <input
+          {/* <input
             type="text"
             placeholder="Username"
             className="h-14 w-[50vw] rounded-lg border-2 bg-transparent px-2 outline-none"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-          />
+          /> */}
           <Button
-            className="mb-1 ml-1 flex h-14 items-center justify-center gap-1 bg-main px-3 py-0 text-base text-white"
+            flat
+            className="ml-2 flex w-[60vw] items-center justify-center gap-1 bg-black text-base text-white"
             onClick={async () => {
-              await create(username);
+              await create('booklet');
             }}>
             Create
-            <Image src="/logo.png" alt="logo" width={20} height={20} />
+            <Sparkles size={20} color="white" />
           </Button>
         </>
       ) : (
         <>
           <Button
-            className="mr-5 flex h-14 w-[42vw] items-center justify-center gap-1 p-0"
-            onClick={() => setCreating(true)}>
-            Create
-            {/* <Image src="/morpho.svg" alt="logo" width={25} height={25} /> */}
-          </Button>
-          <Button
-            className="flex h-14 w-[42vw] items-center justify-center gap-1 bg-main p-0 text-white"
+            flat
+            className="flex items-center justify-center gap-1  text-base font-bold "
             onClick={async () => {
               await get();
             }}>
             Connect
-            {/* <Image src="/morpho.svg" alt="logo" width={25} height={25} /> */}
+          </Button>
+          <Button
+            flat
+            className="ml-2 flex w-[60vw] items-center justify-center gap-2 bg-black text-base font-bold text-white"
+            onClick={() => setCreating(true)}>
+            Get started
+            <ArrowRight size={20} color="white" />
           </Button>
         </>
       )}

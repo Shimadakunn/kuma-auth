@@ -1,11 +1,15 @@
+import { Anybody } from 'next/font/google';
 import Image from 'next/image';
 import { Actions } from './actions';
+
+const anybody = Anybody({ subsets: ['latin'] });
+
 export default function Home() {
   return (
     <div className="flex h-[100vh] w-full flex-col items-center justify-center">
       <div className="flex h-[10vh] items-center justify-center gap-1">
-        <Image src="/logo.png" alt="logo" width={40} height={40} />
-        <h1 className="text-4xl font-black">Kuma</h1>
+        <Image src="/logo.png" alt="logo" width={35} height={35} />
+        <h1 className={`text-4xl font-black ${anybody.className} pt-2`}>booklet</h1>
       </div>
       <Image
         src="/illustration.png"

@@ -53,7 +53,7 @@ export function NotStaked() {
               }}
               className="mx-auto"
             />
-            <h1 className="text-center text-2xl font-bold">Sending transaction...</h1>
+            <h1 className="text-center text-2xl font-bold">Loading...</h1>
           </>
         )}
         {success === 'success' && (
@@ -69,7 +69,7 @@ export function NotStaked() {
               }}
               className="mx-auto"
             />
-            <h1 className="text-center text-2xl font-bold">Transaction successful!</h1>
+            <h1 className="text-center text-2xl font-bold">Success!</h1>
             <AlertDialogFooter>
               <AlertDialogCancel>
                 <Button
@@ -93,7 +93,7 @@ export function NotStaked() {
         )}
         {success === 'error' && (
           <>
-            <h1 className="text-center text-2xl font-bold">Transaction failed</h1>
+            <h1 className="text-center text-2xl font-bold">An error occurred</h1>
             <AlertDialogFooter>
               <AlertDialogCancel>
                 <Button
@@ -118,11 +118,10 @@ export function NotStaked() {
         {!isLoading && success === null && (
           <>
             <AlertDialogHeader>
-              <AlertDialogTitle>{balances.balance} USDC Not Staked</AlertDialogTitle>
+              <AlertDialogTitle>You have received {balances.balance} USD</AlertDialogTitle>
             </AlertDialogHeader>
             <AlertDialogDescription>
-              You have {balances.balance} USDC not staked. Please stake your tokens to start earning
-              rewards.
+              Please click on the button below to start earning interest.
             </AlertDialogDescription>
             <AlertDialogFooter className="p-2">
               <Button
@@ -138,7 +137,7 @@ export function NotStaked() {
                     setSuccess
                   )
                 }>
-                {isLoading ? 'Staking...' : 'Stake'}
+                {isLoading ? 'Loading...' : 'Earn'}
               </Button>
               <AlertDialogCancel className="h-12 w-full text-xl">Cancel</AlertDialogCancel>
             </AlertDialogFooter>

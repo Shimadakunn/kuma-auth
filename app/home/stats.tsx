@@ -4,6 +4,8 @@ import { useMe } from '@/providers';
 import { ArrowDown, TrendingUp } from 'lucide-react';
 import { useState } from 'react';
 import { Anybody } from 'next/font/google';
+import { Transaction } from '@/lib/functions';
+import { formatBalance } from '@/utils/formatBalance';
 
 const anybody = Anybody({ subsets: ['latin'] });
 
@@ -18,7 +20,7 @@ export function Infos() {
             <span className="text-4xl">14,24</span>
             <span className="text-2xl">%</span>
           </h1>
-          <p className="flex gap-1 text-sm font-bold text-gray-500">
+          <p className="flex text-sm font-bold text-gray-500">
             <ArrowDown className="h-4 w-4" />
             Net APY
           </p>

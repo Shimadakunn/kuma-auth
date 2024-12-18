@@ -12,7 +12,8 @@ export function SendAction({ amount, to }: { amount: string; to: Hex }) {
   const { me, updateBalances } = useMe();
   return (
     <Button
-      className="mx-auto mb-3 w-[90%] bg-main text-white"
+      flat
+      className="mx-auto mb-3 w-[90%] bg-black text-white"
       onClick={() => Transaction(me!, amount, 'send', setLoading, updateBalances, undefined, to)}>
       <Send size={22} color="white" strokeWidth={2.5} className="mr-1" />
       {loading ? 'Sending...' : 'Send'}
