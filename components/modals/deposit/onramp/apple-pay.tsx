@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import { useState } from 'react';
 
 // Add type definitions for Apple Pay
@@ -85,10 +86,18 @@ export function ApplePay({ amount, onSuccess, onError }: ApplePayProps) {
 
   return (
     <Button
+      flat
       onClick={handleApplePayment}
       disabled={isLoading}
-      className="flex w-full items-center justify-center gap-2">
-      {isLoading ? 'Processing...' : <>Pay with Apple Pay</>}
+      className="flex w-[90%] items-center justify-center gap-2 text-xl">
+      {isLoading ? (
+        'Processing...'
+      ) : (
+        <>
+          <Image src="/apple.png" alt="Apple Pay" width={20} height={20} />
+          Apple Pay
+        </>
+      )}
     </Button>
   );
 }

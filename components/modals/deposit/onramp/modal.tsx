@@ -1,7 +1,13 @@
+import Image from 'next/image';
+
+import { Button } from '@/components/ui/button';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from '@/components/ui/drawer';
+import { Landmark } from 'lucide-react';
+import { Anybody } from 'next/font/google';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { ApplePay } from './apple-pay';
+const anybody = Anybody({ subsets: ['latin'] });
 
 export function OnrampModal({
   openOnramp,
@@ -25,13 +31,27 @@ export function OnrampModal({
 
   return (
     <Drawer open={openOnramp} onOpenChange={setOpenOnramp}>
-      <DrawerContent>
+      <DrawerContent className="h-[50vh]">
         <DrawerHeader className="p-4">
-          <DrawerTitle>Deposit with Apple Pay</DrawerTitle>
+          <DrawerTitle className="text-2xl font-black">Deposit</DrawerTitle>
         </DrawerHeader>
-        <div className="flex flex-col items-center justify-center gap-4 p-4">
-          <div className="text-2xl font-bold">${amount.toFixed(2)}</div>
-          <ApplePay amount={amount} onSuccess={handlePaymentSuccess} onError={handlePaymentError} />
+        <div className="flex h-full flex-col items-center justify-around gap-4 p-4">
+          <div className={`text-5xl font-black ${anybody.className}`}>$2500</div>
+          <div className="flex w-full flex-col items-center justify-center gap-2">
+            <ApplePay
+              amount={amount}
+              onSuccess={handlePaymentSuccess}
+              onError={handlePaymentError}
+            />
+            <Button flat className="w-[90%] gap-1 text-xl">
+              <Image src="/google.png" alt="Google Pay" width={20} height={20} />
+              Google Pay
+            </Button>
+            <Button flat className="w-[90%] gap-1 bg-black text-xl text-white">
+              <Landmark className="h-5 w-5" strokeWidth={2.5} color="white" />
+              Bank transfer
+            </Button>
+          </div>
         </div>
       </DrawerContent>
     </Drawer>

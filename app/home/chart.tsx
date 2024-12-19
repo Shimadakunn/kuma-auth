@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { Area, AreaChart } from 'recharts';
 
 import {
@@ -9,23 +10,23 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
-// const chartData = [
-//   { month: 'January', balance: 10.5 },
-//   { month: 'February', balance: 11.2 },
-//   { month: 'March', balance: 12.1 },
-//   { month: 'April', balance: 13.4 },
-//   { month: 'May', balance: 14.3 },
-//   { month: 'June', balance: 15.2 },
-// ];
 
-const chartData = [
+const initialChartData = [
   { month: 'January', balance: 10 },
   { month: 'February', balance: 10 },
   { month: 'March', balance: 10 },
   { month: 'April', balance: 10 },
   { month: 'May', balance: 10 },
   { month: 'June', balance: 10 },
+];
+
+const targetChartData = [
+  { month: 'January', balance: 11.5 },
+  { month: 'February', balance: 11.7 },
+  { month: 'March', balance: 12.5 },
+  { month: 'April', balance: 13.2 },
+  { month: 'May', balance: 14 },
+  { month: 'June', balance: 15 },
 ];
 
 const chartConfig = {
@@ -37,6 +38,36 @@ const chartConfig = {
 
 export function Chart() {
   const [period, setPeriod] = useState('1H');
+  const [chartData, setChartData] = useState(initialChartData);
+
+  // useEffect(() => {
+  //   const initialDelay = 2000; // 2 second delay
+  //   const animationDuration = 10000; // 10 seconds
+  //   const steps = 60; // 60 frames for smooth animation
+  //   const stepDuration = animationDuration / steps;
+  //   let currentStep = 0;
+
+  //   const animate = () => {
+  //     const progress = currentStep / steps;
+  //     const newData = initialChartData.map((item, index) => ({
+  //       month: item.month,
+  //       balance: item.balance + (targetChartData[index].balance - item.balance) * progress,
+  //     }));
+  //     setChartData(newData);
+  //     currentStep++;
+
+  //     if (currentStep <= steps) {
+  //       setTimeout(animate, stepDuration);
+  //     }
+  //   };
+
+  //   // Add initial delay before starting animation
+  //   const timeoutId = setTimeout(animate, initialDelay);
+
+  //   // Cleanup timeout on unmount or when period changes
+  //   return () => clearTimeout(timeoutId);
+  // }, [period]); // Restart animation when period changes
+
   return (
     <div className="flex h-[35vh] flex-col items-center justify-center ">
       <ChartContainer config={chartConfig} className="h-full w-full">
