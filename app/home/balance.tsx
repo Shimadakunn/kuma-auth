@@ -17,7 +17,7 @@ export function Balance() {
         ${balances.balance ? formatBalance(totalBalance) : 'NOT LOADED'}
       </h1> */}
       <h1 className={`px-2 text-6xl font-black ${anybody.className}`}>
-        $<NumberIncrement value={2550.5} decimalPlaces={2} delay={2} from={2500} />
+        $<NumberIncrement value={2520.25} decimalPlaces={2} delay={2} from={2500} />
       </h1>
     </div>
   );
