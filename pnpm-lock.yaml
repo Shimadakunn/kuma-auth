@@ -96,6 +96,9 @@ importers:
         specifier: ^1.4.7
         version: 1.4.13(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(viem@1.21.4(typescript@5.7.2))
     devDependencies:
+      '@types/applepayjs':
+        specifier: ^14.0.9
+        version: 14.0.9
       '@types/node':
         specifier: ^20
         version: 20.17.9
@@ -1826,6 +1829,9 @@ packages:
         optional: true
       react-native:
         optional: true
+
+  '@types/applepayjs@14.0.9':
+    resolution: {integrity: sha512-xEprYbb0TEP/XIiDPbVnTYpDai8fTFpsQfVSfTd81Is2GOMUy7ie019eyX6Mz2ECxfjoUVKaiGSL577roIeHCg==}
 
   '@types/d3-array@3.2.1':
     resolution: {integrity: sha512-Y2Jn2idRrLzUfAKV2LyRImR+y4oa2AntrgID95SHJxuMUrkNXmanDSed71sRNZysveJVt1hLLemQZIady0FpEg==}
@@ -6983,6 +6989,8 @@ snapshots:
       use-sync-external-store: 1.4.0(react@18.3.1)
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
+
+  '@types/applepayjs@14.0.9': {}
 
   '@types/d3-array@3.2.1': {}
 

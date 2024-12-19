@@ -39,7 +39,7 @@ export function NotStaked() {
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
-      <AlertDialogContent className="w-[90vw] rounded-xl border-2 border-black">
+      <AlertDialogContent className="w-[95vw] rounded-xl border-2 border-black">
         {isLoading && (
           <>
             <LottiePlayer

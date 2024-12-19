@@ -11,13 +11,10 @@ export default function Home() {
         <Image src="/logo.png" alt="logo" width={35} height={35} />
         <h1 className={`text-4xl font-black ${anybody.className} pt-2`}>booklet</h1>
       </div>
-      <Image
-        src="/illustration.png"
-        alt="logo"
-        width={1000}
-        height={1000}
-        className="h-[60vh] w-full object-cover "
-      />
+      <video width="800" height="240" autoPlay muted loop playsInline>
+        <source src="/shine.webm" type="video/webm" />
+        Your browser does not support the video tag.
+      </video>
       <div className="flex h-[15vh] w-full items-center justify-center">
         <h1 className="text-3xl font-black">
           Unlock the Future of <br />

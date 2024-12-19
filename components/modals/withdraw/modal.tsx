@@ -15,7 +15,7 @@ export function Withdraw({
   const [openSend, setOpenSend] = useState(false);
   return (
     <Drawer open={openWithdraw} onOpenChange={setOpenWithdraw}>
-      <DrawerContent className="bottom-4 mx-auto flex w-[90vw] rounded-3xl px-6">
+      <DrawerContent className="bottom-4 mx-auto flex w-[95vw] rounded-3xl px-6">
         <DrawerHeader className="py-2">
           <DrawerTitle className="text-2xl font-bold">Withdraw</DrawerTitle>
         </DrawerHeader>

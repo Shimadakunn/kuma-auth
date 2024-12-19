@@ -60,7 +60,7 @@ export function SendModal({
 
   return (
     <Drawer open={openSend} onOpenChange={setOpenSend}>
-      <DrawerContent className="bottom-4 mx-auto flex w-[90vw] rounded-3xl">
+      <DrawerContent className="bottom-4 mx-auto flex w-[95vw] rounded-3xl">
         {/* Header */}
         <DrawerHeader className="py-2">
           <DrawerTitle className="flex items-center text-2xl font-bold">
