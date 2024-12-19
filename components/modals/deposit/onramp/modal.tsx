@@ -16,7 +16,7 @@ export function OnrampModal({
   openOnramp: boolean;
   setOpenOnramp: (open: boolean) => void;
 }) {
-  const [amount] = useState(100);
+  const [amount] = useState(2500);
 
   const handlePaymentSuccess = (paymentResult: any) => {
     console.log('Payment successful:', paymentResult);
@@ -36,18 +36,26 @@ export function OnrampModal({
           <DrawerTitle className="text-2xl font-black">Deposit</DrawerTitle>
         </DrawerHeader>
         <div className="flex h-full flex-col items-center justify-around gap-4 p-4">
-          <div className={`text-5xl font-black ${anybody.className}`}>$2500</div>
+          <div className="flex w-full items-center justify-center gap-4">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full border-[3px] pb-[3px] text-2xl font-black">
+              -
+            </div>
+            <div className={`text-5xl font-black ${anybody.className} pt-1`}>$2500</div>
+            <div className="flex h-8 w-8 items-center justify-center rounded-full border-[3px] pb-[3px] text-2xl font-black">
+              +
+            </div>
+          </div>
           <div className="flex w-full flex-col items-center justify-center gap-2">
             <ApplePay
               amount={amount}
               onSuccess={handlePaymentSuccess}
               onError={handlePaymentError}
             />
-            <Button flat className="w-[90%] gap-1 text-xl">
+            <Button flat className="w-[95%] gap-1 text-xl">
               <Image src="/google.png" alt="Google Pay" width={20} height={20} />
               Google Pay
             </Button>
-            <Button flat className="w-[90%] gap-1 bg-black text-xl text-white">
+            <Button flat className="w-[95%] gap-1 bg-black text-xl text-white">
               <Landmark className="h-5 w-5" strokeWidth={2.5} color="white" />
               Bank transfer
             </Button>
