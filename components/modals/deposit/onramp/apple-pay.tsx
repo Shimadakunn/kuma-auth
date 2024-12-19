@@ -31,37 +31,51 @@ interface ApplePayProps {
 export function ApplePay({ amount, onSuccess, onError }: ApplePayProps) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const simulatePayment = () => {
-    return new Promise((resolve) => {
-      // Simulate network delay
-      setTimeout(() => {
-        const mockPayment = {
-          token: {
-            paymentData: {
-              version: 'EC_v1',
-              data: 'simulated_payment_data',
-              signature: 'mock_signature',
-            },
-            paymentMethod: {
-              displayName: 'Visa ***1234',
-              network: 'Visa',
-              type: 'debit',
-            },
-            transactionIdentifier: 'mock_' + Date.now().toString(),
-          },
-        };
-        resolve(mockPayment);
-      }, 2000); // 2 second delay
-    });
-  };
-
   const handleApplePayment = async () => {
+    if (!window.ApplePaySession?.canMakePayments()) {
+      onError(new Error('Apple Pay is not available'));
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      // Simulate payment process
-      const paymentResult = await simulatePayment();
-      onSuccess(paymentResult);
+      const paymentRequest: ApplePayJS.ApplePayPaymentRequest = {
+        countryCode: 'US',
+        currencyCode: 'USD',
+        supportedNetworks: ['visa', 'masterCard', 'amex'],
+        merchantCapabilities: ['supports3DS'],
+        total: {
+          label: 'Morpho Deposit',
+          amount: amount.toString(),
+          type: 'final',
+        },
+      };
+
+      const session = new window.ApplePaySession(3, paymentRequest);
+
+      session.onvalidatemerchant = async (event: ApplePayValidateMerchantEvent) => {
+        try {
+          // Here you would typically make an API call to your backend to validate the merchant
+          // const merchantSession = await validateMerchant(event.validationURL);
+          // session.completeMerchantValidation(merchantSession);
+        } catch (err) {
+          session.abort();
+          onError(err as Error);
+        }
+      };
+
+      session.onpaymentauthorized = (event: ApplePayPaymentAuthorizedEvent) => {
+        // Here you would typically make an API call to process the payment
+        // const result = await processPayment(event.payment);
+
+        session.completePayment(
+          window.ApplePaySession?.STATUS_SUCCESS ?? ApplePaySession.STATUS_SUCCESS
+        );
+        onSuccess(event.payment);
+      };
+
+      session.begin();
     } catch (error) {
       onError(error as Error);
     } finally {
@@ -74,7 +88,7 @@ export function ApplePay({ amount, onSuccess, onError }: ApplePayProps) {
       onClick={handleApplePayment}
       disabled={isLoading}
       className="flex w-full items-center justify-center gap-2">
-      {isLoading ? 'Processing...' : <>Apple Pay</>}
+      {isLoading ? 'Processing...' : <>Pay with Apple Pay</>}
     </Button>
   );
 }
