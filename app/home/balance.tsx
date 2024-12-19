@@ -1,5 +1,6 @@
 'use client';
 
+import { NumberIncrement } from '@/components/ui/number-increment';
 import { useMe } from '@/providers';
 import { Anybody } from 'next/font/google';
 const anybody = Anybody({ subsets: ['latin'] });
@@ -15,8 +16,8 @@ export function Balance() {
         ${balances.balance ? formatBalance(totalBalance) : 'NOT LOADED'}
       </h1> */}
       <h1 className={`px-2 text-6xl font-black ${anybody.className}`}>
-        {/* $<NumberIncrement value={2520.25} decimalPlaces={2} delay={2} from={2500} /> */}
-        $0
+        $<NumberIncrement value={2520.25} decimalPlaces={2} delay={2} from={2500} />
+        {/* $0 */}
       </h1>
     </div>
   );

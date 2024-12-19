@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Area, AreaChart } from 'recharts';
 
 import {
@@ -40,33 +40,33 @@ export function Chart() {
   const [period, setPeriod] = useState('1H');
   const [chartData, setChartData] = useState(initialChartData);
 
-  // useEffect(() => {
-  //   const initialDelay = 2000; // 2 second delay
-  //   const animationDuration = 10000; // 10 seconds
-  //   const steps = 60; // 60 frames for smooth animation
-  //   const stepDuration = animationDuration / steps;
-  //   let currentStep = 0;
+  useEffect(() => {
+    const initialDelay = 2000; // 2 second delay
+    const animationDuration = 10000; // 10 seconds
+    const steps = 60; // 60 frames for smooth animation
+    const stepDuration = animationDuration / steps;
+    let currentStep = 0;
 
-  //   const animate = () => {
-  //     const progress = currentStep / steps;
-  //     const newData = initialChartData.map((item, index) => ({
-  //       month: item.month,
-  //       balance: item.balance + (targetChartData[index].balance - item.balance) * progress,
-  //     }));
-  //     setChartData(newData);
-  //     currentStep++;
+    const animate = () => {
+      const progress = currentStep / steps;
+      const newData = initialChartData.map((item, index) => ({
+        month: item.month,
+        balance: item.balance + (targetChartData[index].balance - item.balance) * progress,
+      }));
+      setChartData(newData);
+      currentStep++;
 
-  //     if (currentStep <= steps) {
-  //       setTimeout(animate, stepDuration);
-  //     }
-  //   };
+      if (currentStep <= steps) {
+        setTimeout(animate, stepDuration);
+      }
+    };
 
-  //   // Add initial delay before starting animation
-  //   const timeoutId = setTimeout(animate, initialDelay);
+    // Add initial delay before starting animation
+    const timeoutId = setTimeout(animate, initialDelay);
 
-  //   // Cleanup timeout on unmount or when period changes
-  //   return () => clearTimeout(timeoutId);
-  // }, [period]); // Restart animation when period changes
+    // Cleanup timeout on unmount or when period changes
+    return () => clearTimeout(timeoutId);
+  }, [period]); // Restart animation when period changes
 
   return (
     <div className="flex h-[35vh] flex-col items-center justify-center ">

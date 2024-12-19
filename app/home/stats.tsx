@@ -1,5 +1,6 @@
 'use client';
 
+import { NumberIncrement } from '@/components/ui/number-increment';
 import { useMe } from '@/providers';
 import { Sparkles, TrendingUp } from 'lucide-react';
 import { Anybody } from 'next/font/google';
@@ -26,8 +27,8 @@ export function Infos() {
         <div className="flex flex-col items-end justify-center">
           <span className={`pl-1 text-4xl font-bold ${anybody.className}`}>
             {/* $<NumberTicker value={5.67} decimalPlaces={2} /> */}
-            {/* $<NumberIncrement value={20.25} decimalPlaces={2} delay={2} from={0} /> */}
-            $0
+            $<NumberIncrement value={20.25} decimalPlaces={2} delay={2} from={0} />
+            {/* $0 */}
           </span>
           <p className="flex items-center gap-1 text-sm font-bold text-gray-500">
             <TrendingUp className="h-4 w-4" />
