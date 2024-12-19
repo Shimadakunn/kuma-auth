@@ -1,5 +1,6 @@
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from '@/components/ui/drawer';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { ApplePay } from './apple-pay';
 
 export function OnrampModal({
@@ -9,16 +10,17 @@ export function OnrampModal({
   openOnramp: boolean;
   setOpenOnramp: (open: boolean) => void;
 }) {
-  const [amount] = useState(100); // You might want to make this dynamic
+  const [amount] = useState(100);
 
   const handlePaymentSuccess = (paymentResult: any) => {
     console.log('Payment successful:', paymentResult);
+    toast.success('Payment processed successfully!');
     setOpenOnramp(false);
   };
 
   const handlePaymentError = (error: Error) => {
     console.error('Payment failed:', error);
-    // Handle error (show error message to user)
+    toast.error('Payment failed: ' + error.message);
   };
 
   return (
