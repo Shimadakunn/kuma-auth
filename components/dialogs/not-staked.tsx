@@ -14,7 +14,6 @@ import { Transaction } from '@/lib/functions';
 import { useMe } from '@/providers';
 import { useEffect, useRef, useState } from 'react';
 
-import loadingAnimation from '@/public/animation/loading.json';
 import successAnimation from '@/public/animation/success.json';
 import dynamic from 'next/dynamic';
 
@@ -29,7 +28,7 @@ export function NotStaked() {
 
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>('success');
   const { me, balances, updateBalances } = useMe();
 
   useEffect(() => {
@@ -41,8 +40,8 @@ export function NotStaked() {
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogContent className="w-[95vw] rounded-xl border-2 border-black">
         {isLoading && (
-          <>
-            <LottiePlayer
+          <div className="flex flex-col items-center justify-center gap-2">
+            {/* <LottiePlayer
               lottieRef={animationRef}
               animationData={loadingAnimation}
               loop={true}
@@ -52,9 +51,13 @@ export function NotStaked() {
                 height: 200,
               }}
               className="mx-auto"
-            />
+            /> */}
+            <video width="200" autoPlay muted loop playsInline>
+              <source src="/shape1.webm" type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
             <h1 className="text-center text-2xl font-bold">Loading...</h1>
-          </>
+          </div>
         )}
         {success === 'success' && (
           <>

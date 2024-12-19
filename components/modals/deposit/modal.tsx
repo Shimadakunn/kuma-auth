@@ -1,20 +1,18 @@
 import { Button } from '@/components/ui/button';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from '@/components/ui/drawer';
-import { Landmark, QrCode } from 'lucide-react';
-import { useState } from 'react';
-
-import { AddressModal } from '@/components/modals/deposit/address';
-import { OnrampModal } from '@/components/modals/deposit/onramp';
+import { CreditCard, QrCode } from 'lucide-react';
 
 export function Deposit({
   openDeposit,
   setOpenDeposit,
+  setOpenAddress,
+  setOpenOnramp,
 }: {
   openDeposit: boolean;
   setOpenDeposit: (open: boolean) => void;
+  setOpenAddress: (open: boolean) => void;
+  setOpenOnramp: (open: boolean) => void;
 }) {
-  const [openAddress, setOpenAddress] = useState(false);
-  const [openOnramp, setOpenOnramp] = useState(false);
   return (
     <Drawer open={openDeposit} onOpenChange={setOpenDeposit}>
       <DrawerContent className="bottom-4 mx-auto flex w-[95vw] rounded-3xl px-6">
@@ -24,20 +22,24 @@ export function Deposit({
         <Button
           flat
           className="mx-auto mb-3 flex h-14 w-full items-center justify-center text-lg font-bold"
-          onClick={() => setOpenAddress(true)}>
+          onClick={() => {
+            setOpenAddress(true);
+            setOpenDeposit(false);
+          }}>
           <QrCode size={20} color="black" strokeWidth={2.5} className="mr-1" />
           Display Address
         </Button>
         <Button
           flat
           className="mx-auto mb-8 flex h-14 w-full items-center justify-center bg-black text-lg font-bold text-white"
-          onClick={() => setOpenOnramp(true)}>
-          <Landmark size={20} color="white" strokeWidth={3} className="mr-1" />
-          Deposit to Bank
+          onClick={() => {
+            setOpenOnramp(true);
+            setOpenDeposit(false);
+          }}>
+          <CreditCard size={20} color="white" strokeWidth={3} className="mr-2" />
+          Deposit with Card
         </Button>
       </DrawerContent>
-      <AddressModal openAddress={openAddress} setOpenAddress={setOpenAddress} />
-      <OnrampModal openOnramp={openOnramp} setOpenOnramp={setOpenOnramp} />
     </Drawer>
   );
 }

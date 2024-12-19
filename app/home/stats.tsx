@@ -1,11 +1,10 @@
 'use client';
 
+import { NumberTicker } from '@/components/ui/number-ticker';
 import { useMe } from '@/providers';
-import { ArrowDown, TrendingUp } from 'lucide-react';
-import { useState } from 'react';
+import { Sparkles, TrendingUp } from 'lucide-react';
 import { Anybody } from 'next/font/google';
-import { Transaction } from '@/lib/functions';
-import { formatBalance } from '@/utils/formatBalance';
+import { useState } from 'react';
 
 const anybody = Anybody({ subsets: ['latin'] });
 
@@ -17,16 +16,18 @@ export function Infos() {
       <div className="flex h-[20vh] w-full items-center justify-around gap-4">
         <div className="flex flex-col items-start justify-center">
           <h1 className={`font-bold ${anybody.className}`}>
-            <span className="text-4xl">14,24</span>
+            <span className="text-4xl">14.24</span>
             <span className="text-2xl">%</span>
           </h1>
-          <p className="flex text-sm font-bold text-gray-500">
-            <ArrowDown className="h-4 w-4" />
-            Net APY
+          <p className="flex items-center gap-1 text-sm font-bold text-gray-500">
+            <Sparkles className="h-4 w-4" />
+            Net apy
           </p>
         </div>
         <div className="flex flex-col items-end justify-center">
-          <span className={`pl-1 text-4xl font-bold ${anybody.className}`}>$0.00</span>
+          <span className={`pl-1 text-4xl font-bold ${anybody.className}`}>
+            $<NumberTicker value={5.67} decimalPlaces={2} />
+          </span>
           <p className="flex items-center gap-1 text-sm font-bold text-gray-500">
             <TrendingUp className="h-4 w-4" />
             Yield earned
